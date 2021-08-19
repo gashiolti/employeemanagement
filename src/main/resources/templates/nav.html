@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org/">
+<head th:replace="header :: html-header" />
+
+<body>
+
+    <nav class="navbar navbar-light bg-light mb-3" th:fragment="html-nav">
+        <div class="container">
+            <a th:href="@{/employees}" class="navbar-brand">
+                <img th:src="@{/images/admin.png}" alt="logo" width="50" height="50">
+            </a>
+
+            <a th:href="@{/login}">
+                <button type="button" class="btn btn-danger">
+                    LOGOUT
+                    <i class="fas fa-sign-out-alt"></i>
+                </button></a>
+        </div>
+    </nav>
+
+</body>
+</html>

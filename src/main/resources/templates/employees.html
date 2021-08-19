@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org/">
+<head th:replace="header :: html-header" />
+
+<body>
+
+    <nav th:replace="nav :: html-nav" />
+
+    <div class="container bg-light pb-1">
+
+        <!-- Modal -->
+<!--        <div class="modal-div hidden">-->
+<!--            <button class="close-modal">&times;</button>-->
+<!--            <div class="modal-div hidden">-->
+
+<!--            </div>-->
+<!--        </div>-->
+        <div class="overlay hidden"></div>
+
+        <h3 class="pt-3">Employees Management</h3>
+        <hr>
+
+        <a th:href="@{/employees/addemployee}" class="btn btn-primary btn-sm mb-3" ><i
+                class="fas fa-plus-circle"></i>  Add Employee</a>
+
+        <div class="success-display mb-3" th:if="${param.deleted}">
+            <i class="fas fa-check-circle"></i>
+            <p>Employee deleted successfully!</p>
+        </div>
+
+        <div class="info-display mb-3" th:if="${param.added}">
+            <i class="fas fa-info-circle"></i>
+            <p>New employee added successfully!</p>
+        </div>
+
+        <div class="info-display mb-3" th:if="${param.updated}">
+            <i class="fas fa-info-circle"></i>
+            <p>Employee updated successfully!</p>
+        </div>
+
+        <table class="table table-bordered table-striped mb-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.firstName}" />
+                    <td th:text="${employee.lastName}" />
+                    <td th:text="${employee.email}" />
+                    <td th:text="${employee.address}" />
+                    <td>
+                        <a th:href="@{/employees/editform(employeeId=${employee.id})}">
+                            <button type="button" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </a>
+                        <a th:href="@{/employees/delete(employeeId=${employee.id})}"
+                           onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Modal -->
+<!--    <div class="modal-content modal-div hidden bg-dark">-->
+<!--        <div class="modal-header">-->
+<!--            <h5 class="modal-title text-light">Delete Employee</h5>-->
+<!--            &lt;!&ndash;                        <button type="button" class="close-modal" data-bs-dismiss="modal"&ndash;&gt;-->
+<!--            &lt;!&ndash;                                aria-label="Close"></button>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--            <p class="text-light">Are you sure you want to delete this employee?</p>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--            <button type="button" class="btn btn-primary confirm-button">Confirm</button>-->
+<!--            <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal">-->
+<!--                Cancel-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <footer th:replace="footer :: html-footer" />
+
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/c53fa9b220.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Custom JS -->
+    <script th:src="@{/js/script.js}"></script>
+
+
+</body>
+
+</html>

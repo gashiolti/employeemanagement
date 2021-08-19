@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org/">
+<head th:replace="header :: html-header" />
+
+<body>
+
+    <nav th:replace="nav :: html-nav" />
+
+    <div class="container bg-light pb-3">
+
+        <h3 class="pt-3">Employees Management</h3>
+        <hr>
+
+        <h4 class="pb-2">Add new employee</h4>
+
+        <form action="#" th:action="@{/save}" th:object="${employee}" method="POST">
+
+            <div class="mb-3 col-4">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" th:field="*{firstName}" class="form-control" id="firstname"
+                       placeholder="John" />
+            </div>
+
+            <div class="mb-3 col-4">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input type="text" th:field="*{lastName}" class="form-control" id="lastname"
+                       placeholder="Doe" />
+            </div>
+
+            <div class="mb-3 col-4">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="text" th:field="*{email}" class="form-control" id="email"
+                       placeholder="johndoe@gmail.com" />
+            </div>
+
+            <div class="mb-3 col-4">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" th:field="*{address}" class="form-control" id="address"
+                       placeholder="4201 Owen Lane" />
+            </div>
+
+            <button type="submit" class="btn btn-primary col-2">Save</button>
+
+        </form>
+
+        <hr/>
+
+        <a th:href="@{/employees}" class="link-info mb-4" style="text-decoration: none; cursor: pointer">
+            Back to employee list
+        </a>
+
+
+    </div>
+
+    <footer th:replace="footer :: html-footer" />
+
+    <script src="https://kit.fontawesome.com/c53fa9b220.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
