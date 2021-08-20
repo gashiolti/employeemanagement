@@ -49,10 +49,8 @@ public class EmployeeRestController {
     }
 
     // ADD MAPPING FOR POST /employees - add a new employee
-    @PostMapping("/save")
+    @PostMapping("/saveemployee")
     public String addEmployee(@ModelAttribute("employee") Employee employee) {
-
-//        employee.setId(0);
 
         employeeService.save(employee);
 
